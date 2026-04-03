@@ -36,6 +36,17 @@ body.dark header{background:rgba(8,12,20,.82)}
 .next-actions-list{display:grid;gap:10px}.next-act{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:14px;background:var(--bg3);border:1px solid var(--border)}.next-num{width:26px;height:26px;border-radius:999px;display:grid;place-items:center;background:#4f46e5;color:#fff;font-size:.72rem;font-weight:800;flex-shrink:0}.next-act strong{display:block;font-size:.86rem;margin-bottom:2px;font-weight:800}.next-act span{font-size:.74rem;color:var(--text2);line-height:1.45;font-weight:600}
 .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:30;overflow-x:auto}.bnav-inner{display:flex;min-width:max-content;padding:6px 8px;margin:0 auto;justify-content:center}.ni{min-width:68px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 6px;gap:4px}.ni>span:first-child{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:rgba(79,70,229,.12)}.ni-lbl{font-size:.5rem;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:.6px}.ni.active .ni-lbl{color:var(--accent)}
 .search-overlay{position:fixed;inset:0;background:rgba(8,12,20,.76);backdrop-filter:blur(8px);display:none;z-index:1000;padding:12px}.search-overlay.open{display:flex}.search-card{margin:auto;width:min(760px,100%);height:min(80vh,760px);background:var(--bg2);border:1px solid var(--border2);border-radius:22px;box-shadow:0 28px 90px rgba(0,0,0,.36);display:flex;flex-direction:column;overflow:hidden}.search-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border)}.search-head input{flex:1;background:var(--bg3);color:var(--text);border:1px solid var(--border2);border-radius:12px;padding:12px 14px;font-size:.94rem}.search-results{padding:14px 16px;overflow:auto}.search-item{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--border);border-radius:14px;background:var(--bg2);margin-bottom:8px}
+
+.build-summary{display:grid;gap:12px}
+.build-item{padding:12px;border-radius:16px;background:var(--bg3);border:1px solid var(--border)}
+.build-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.build-title{font-size:.84rem;font-weight:800}
+.build-tag{padding:6px 10px;border-radius:999px;background:var(--bg2);font-size:.58rem;font-family:var(--mono);font-weight:800}
+.build-sub{font-size:.72rem;color:var(--text2);font-weight:600;line-height:1.45;margin-bottom:8px}
+.build-bar{height:8px;background:var(--bg2);border-radius:999px;overflow:hidden}
+.build-fill{height:100%;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:999px}
+.build-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:.68rem;color:var(--text2);font-family:var(--mono);font-weight:700}
+
 @media (max-width:700px){.quick-links{grid-template-columns:1fr}}
 </style>
 </head>
@@ -64,7 +75,11 @@ body.dark header{background:rgba(8,12,20,.82)}
 </div>
 <div class="section-title"><h2>Study Activity</h2><span>tap today to mark activity</span></div>
 <div class="heatmap-wrap"><div class="hm-hdr"><span class="hm-title">Consistency heatmap</span><div class="hm-legend"><span>Less</span><div class="hm-demo" style="background:var(--bg3)"></div><div class="hm-demo" style="background:rgba(79,70,229,.22)"></div><div class="hm-demo" style="background:rgba(79,70,229,.55)"></div><div class="hm-demo" style="background:#4f46e5"></div><span>More</span></div></div><div class="hm-grid" id="hmGrid"></div></div>
-<div class="section-title"><h2>Achievements</h2><span>now tied to real study state</span></div><section id="achievementsCard"></section>
+
+  <div class="section-title"><h2>Build Mode</h2><span>project momentum</span></div>
+  <div class="card" id="buildSummaryCard"></div>
+
+  <div class="section-title"><h2>Achievements</h2><span>now tied to real study state</span></div><section id="achievementsCard"></section>
 <div class="section-title"><h2>Recommended Next Actions</h2><span>based on your actual state</span></div><div class="card" id="nextActionsCard"></div>
 </div>
 <div class="search-overlay" id="searchOverlay"><div class="search-card"><div class="search-head"><input id="searchInput" type="search" placeholder="Search topics, pages, courses..." autocomplete="off"><button class="hdr-btn" id="searchCloseBtn">✕</button></div><div class="search-results" id="searchResults"></div></div></div>
