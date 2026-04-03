@@ -84,41 +84,43 @@ applyTheme(); renderMonths();
   const PROJECTS = [
     {
       id:'p1',
-      title:'Network RAG Assistant',
-      tag:'RAG + docs',
-      sub:'Build a retrieval assistant over Cisco docs, configs, and personal notes so you can ask troubleshooting and config questions in natural language.',
+      title:'Logistics + Car Sales Copilot',
+      tag:'Dallas → Lagos',
+      sub:'Track vehicles, documents, shipment status, and customer updates for the logistics and car-sales workflow moving from Dallas to Lagos.',
       items:[
-        {id:'p1_1',label:'Collect first set of Cisco docs / notes / configs'},
-        {id:'p1_2',label:'Set up chunking + embeddings pipeline'},
-        {id:'p1_3',label:'Build basic question-answer flow'},
-        {id:'p1_4',label:'Test with real networking questions'},
-        {id:'p1_5',label:'Write a short demo summary of what it can do'}
+        {id:'p1_1',label:'Define the vehicle lifecycle: purchased → shipped → arrived → delivered'},
+        {id:'p1_2',label:'Create sample shipment records with VIN, customer, and status'},
+        {id:'p1_3',label:'Add document intake for invoice, title, and shipping papers'},
+        {id:'p1_4',label:'Extract key fields from uploaded documents'},
+        {id:'p1_5',label:'Build a simple dashboard for delayed / missing-doc shipments'},
+        {id:'p1_6',label:'Generate customer status-update messages'}
       ]
     },
     {
       id:'p2',
-      title:'Network Automation Agent',
-      tag:'Python + Netmiko',
-      sub:'Build an agentic helper that connects to devices, runs commands, parses output, and suggests what to check next.',
+      title:'SoftTouch Repair + Parts Intelligence',
+      tag:'Industrial boards',
+      sub:'Build a document-grounded assistant for obsolete boards, repair notes, manuals, and quote-support work at SoftTouch.',
       items:[
-        {id:'p2_1',label:'Set up Python + Netmiko environment'},
-        {id:'p2_2',label:'Connect to a device and run baseline commands'},
-        {id:'p2_3',label:'Parse output into structured data'},
-        {id:'p2_4',label:'Add LLM reasoning over the command output'},
-        {id:'p2_5',label:'Document one real operations workflow'}
+        {id:'p2_1',label:'Collect manuals, datasheets, and sample repair notes'},
+        {id:'p2_2',label:'Build upload + text extraction pipeline'},
+        {id:'p2_3',label:'Store chunks and enable grounded search'},
+        {id:'p2_4',label:'Answer part / board questions from uploaded material'},
+        {id:'p2_5',label:'Add repair-vs-source recommendation support'},
+        {id:'p2_6',label:'Generate quote-support or intake summaries'}
       ]
     },
     {
       id:'p3',
-      title:'AI Troubleshooting Assistant',
-      tag:'Reasoning + logs',
-      sub:'Build a tool that accepts logs or CLI outputs and suggests likely causes plus next commands to run.',
+      title:'Malaria Consortium Ops Intelligence',
+      tag:'Professional track',
+      sub:'Prepare an operations intelligence concept for report summaries, data-quality checks, and management briefs. This is the higher-pressure project and should follow the first two.',
       items:[
-        {id:'p3_1',label:'Define the first troubleshooting scenarios'},
-        {id:'p3_2',label:'Design prompts for root-cause style reasoning'},
-        {id:'p3_3',label:'Add support for raw logs / CLI text input'},
-        {id:'p3_4',label:'Return next-step commands and explanations'},
-        {id:'p3_5',label:'Create a small demo with example cases'}
+        {id:'p3_1',label:'Define safe non-clinical scope: ops reporting, summaries, risk flags'},
+        {id:'p3_2',label:'List sample report and spreadsheet inputs needed'},
+        {id:'p3_3',label:'Design summary and anomaly-detection workflow'},
+        {id:'p3_4',label:'Draft management brief output format'},
+        {id:'p3_5',label:'Prepare professional proposal deck or brief'}
       ]
     }
   ];
