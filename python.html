@@ -22,18 +22,18 @@ body.dark{
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans)}
 a{text-decoration:none;color:inherit}
 button,input{font-family:var(--sans)}
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:10px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:10px;margin-bottom:10px}
 body.dark header{background:rgba(8,12,20,.82)}
 .back{background:none;border:none;color:var(--accent);font-size:1.25rem;font-weight:800}
 .htxt{flex:1}
 .htxt h1{margin:0;font-size:.98rem;font-weight:800}
 .htxt p{margin:2px 0 0;font-size:.64rem;color:var(--text2);font-family:var(--mono);font-weight:700}
 .theme-btn{min-width:40px;min-height:40px;border-radius:12px;border:1px solid var(--border2);background:var(--bg2);color:var(--text)}
-.wrap{max-width:920px;margin:0 auto;padding:16px 16px 92px}
+.wrap{max-width:920px;margin:0 auto;padding:12px 16px 92px}
 .hero{background:linear-gradient(135deg,#0f172a,#1d4ed8 55%,#4f46e5);border-radius:24px;padding:20px;color:#fff;box-shadow:var(--shadow);margin-bottom:16px}
 .hero-k{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.14);font-size:.62rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;font-family:var(--mono)}
 .hero h2{margin:12px 0 6px;font-size:1.36rem;font-weight:800}
-.hero p{margin:0;color:rgba(255,255,255,.86);line-height:1.55;max-width:65ch;font-weight:600}
+.hero p{margin:0;color:rgba(255,255,255,.86);line-height:1.55;max-width:65ch;font-weight:700}
 .hero-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 .hero-chip{padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.12);font-size:.74rem;font-weight:800}
 .section-title{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px}
@@ -45,7 +45,7 @@ body.dark header{background:rgba(8,12,20,.82)}
 .module-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
 .module-title{font-size:1rem;font-weight:800;margin:0}
 .module-tag{padding:6px 10px;border-radius:999px;background:var(--bg3);font-size:.6rem;font-weight:800;font-family:var(--mono)}
-.module-sub{font-size:.76rem;color:var(--text2);font-weight:600;line-height:1.5;margin-bottom:10px}
+.module-sub{font-size:.76rem;color:var(--text2);font-weight:700;line-height:1.5;margin-bottom:10px}
 .module-prog{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .module-pct{font-size:.72rem;font-family:var(--mono);font-weight:800;color:var(--accent)}
 .progbar{height:8px;background:var(--bg3);border-radius:999px;overflow:hidden;margin-bottom:10px}
@@ -54,12 +54,13 @@ body.dark header{background:rgba(8,12,20,.82)}
 .ck{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:var(--bg3);cursor:pointer}
 .ck input{margin-top:2px}
 .ck span{font-size:.78rem;color:var(--text2);font-weight:700;line-height:1.45}
+.ck.done{background:rgba(79,70,229,0.08)}
 .ck.done span{text-decoration:line-through;color:var(--text3)}
 .summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .sum-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:14px;text-align:center;box-shadow:var(--shadow)}
 .sum-num{font-size:1.45rem;font-weight:800;font-family:var(--mono);color:var(--accent)}
 .sum-lbl{font-size:.58rem;color:var(--text2);margin-top:4px;text-transform:uppercase;letter-spacing:.7px;font-weight:800}
-.note{font-size:.76rem;color:var(--text2);font-weight:600;line-height:1.55}
+.note{font-size:.76rem;color:var(--text2);font-weight:700;line-height:1.55}
 .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:30;overflow-x:auto}
 .bnav-inner{display:flex;min-width:max-content;padding:6px 8px;margin:0 auto;justify-content:center}
 .ni{min-width:68px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 6px;gap:4px}
@@ -121,113 +122,30 @@ body.dark header{background:rgba(8,12,20,.82)}
 <script>
 (function(){
   const MODULES = [
-    {
-      id:'p0',
-      title:'P0 — Setup & Environment',
-      tag:'foundation',
-      sub:'Make your machine and workflow reliable before you chase complexity.',
-      items:[
-        {id:'py1a',label:'Install Python and confirm version'},
-        {id:'py1b',label:'Create and use a virtual environment'},
-        {id:'py1c',label:'Set up VS Code / editor workflow'},
-        {id:'py1d',label:'Run first script from terminal'},
-        {id:'py1e',label:'Use pip and install a package'}
-      ]
-    },
-    {
-      id:'p1',
-      title:'P1 — Core Python',
-      tag:'language core',
-      sub:'Build comfort with the syntax and patterns you will actually use later.',
-      items:[
-        {id:'py2a',label:'Variables, strings, lists, and dictionaries'},
-        {id:'py2b',label:'Conditionals and loops'},
-        {id:'py2c',label:'Functions and return values'},
-        {id:'py2d',label:'Read and write files'},
-        {id:'py2e',label:'Error handling with try/except'}
-      ]
-    },
-    {
-      id:'p2',
-      title:'P2 — Automation',
-      tag:'real leverage',
-      sub:'Turn Python into a tool for network tasks, file processing, and command-line workflows.',
-      items:[
-        {id:'py3a',label:'Write a CLI script with arguments'},
-        {id:'py3b',label:'Parse and transform text files'},
-        {id:'py3c',label:'Work with JSON and structured output'},
-        {id:'py3d',label:'Build one network automation helper'},
-        {id:'py3e',label:'Save results to CSV or report file'}
-      ]
-    },
-    {
-      id:'p3',
-      title:'P3 — API & AI Integration',
-      tag:'projects',
-      sub:'Use Python as the glue between APIs, LLM workflows, and your build projects.',
-      items:[
-        {id:'py4a',label:'Send a basic API request from Python'},
-        {id:'py4b',label:'Handle API responses cleanly'},
-        {id:'py4c',label:'Build one script that uses an AI API'},
-        {id:'py4d',label:'Connect Python to one real project workflow'}
-      ]
-    }
+    {id:'p0',title:'P0 — Setup & Environment',tag:'foundation',sub:'Make your machine and workflow reliable before you chase complexity.',items:[{id:'py1a',label:'Install Python and confirm version'},{id:'py1b',label:'Create and use a virtual environment'},{id:'py1c',label:'Set up VS Code / editor workflow'},{id:'py1d',label:'Run first script from terminal'},{id:'py1e',label:'Use pip and install a package'}]},
+    {id:'p1',title:'P1 — Core Python',tag:'language core',sub:'Build comfort with the syntax and patterns you will actually use later.',items:[{id:'py2a',label:'Variables, strings, lists, and dictionaries'},{id:'py2b',label:'Conditionals and loops'},{id:'py2c',label:'Functions and return values'},{id:'py2d',label:'Read and write files'},{id:'py2e',label:'Error handling with try/except'}]},
+    {id:'p2',title:'P2 — Automation',tag:'real leverage',sub:'Turn Python into a tool for network tasks, file processing, and command-line workflows.',items:[{id:'py3a',label:'Write a CLI script with arguments'},{id:'py3b',label:'Parse and transform text files'},{id:'py3c',label:'Work with JSON and structured output'},{id:'py3d',label:'Build one network automation helper'},{id:'py3e',label:'Save results to CSV or report file'}]},
+    {id:'p3',title:'P3 — API & AI Integration',tag:'projects',sub:'Use Python as the glue between APIs, LLM workflows, and your build projects.',items:[{id:'py4a',label:'Send a basic API request from Python'},{id:'py4b',label:'Handle API responses cleanly'},{id:'py4c',label:'Build one script that uses an AI API'},{id:'py4d',label:'Connect Python to one real project workflow'}]}
   ];
-
   const STORE_KEY = 'pythonProgress';
-
-  function getState(){
-    try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}') || {}; }
-    catch(e){ return {}; }
-  }
+  function getState(){try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}') || {}; } catch(e){ return {}; }}
   function setState(s){ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }
-
-  function modPct(mod, s){
-    const done = mod.items.filter(x => s[x.id]).length;
-    return mod.items.length ? Math.round(done / mod.items.length * 100) : 0;
-  }
-
+  function modPct(mod, s){ const done = mod.items.filter(x => s[x.id]).length; return mod.items.length ? Math.round(done / mod.items.length * 100) : 0; }
   function render(){
     const host = document.getElementById('moduleHost');
     const s = getState();
     host.innerHTML = MODULES.map(mod => {
       const pct = modPct(mod, s);
-      return `
-        <article class="module">
-          <div class="module-top">
-            <div>
-              <h3 class="module-title">${mod.title}</h3>
-              <div class="module-sub">${mod.sub}</div>
-            </div>
-            <div class="module-tag">${mod.tag}</div>
-          </div>
-          <div class="module-prog">
-            <div class="section-title" style="margin:0"><h2 style="font-size:.7rem">Trackable checkpoints</h2></div>
-            <div class="module-pct">${pct}% complete</div>
-          </div>
-          <div class="progbar"><div class="progfill" style="width:${pct}%"></div></div>
-          <div class="ck-list">
-            ${mod.items.map(item => `
-              <label class="ck ${s[item.id] ? 'done' : ''}">
-                <input type="checkbox" data-id="${item.id}" ${s[item.id] ? 'checked' : ''}>
-                <span>${item.label}</span>
-              </label>
-            `).join('')}
-          </div>
-        </article>
-      `;
+      return `<article class="module"><div class="module-top"><div><h3 class="module-title">${mod.title}</h3><div class="module-sub">${mod.sub}</div></div><div class="module-tag">${mod.tag}</div></div><div class="module-prog"><div class="section-title" style="margin:0"><h2 style="font-size:.7rem">Trackable checkpoints</h2></div><div class="module-pct">${pct}% complete</div></div><div class="progbar"><div class="progfill" style="width:${pct}%"></div></div><div class="ck-list">${mod.items.map(item => `<label class="ck ${s[item.id] ? 'done' : ''}"><input type="checkbox" data-id="${item.id}" ${s[item.id] ? 'checked' : ''}><span>${item.label}</span></label>`).join('')}</div></article>`;
     }).join('');
-
     const total = MODULES.flatMap(x => x.items);
     const done = total.filter(x => s[x.id]).length;
     const overall = total.length ? Math.round(done / total.length * 100) : 0;
     document.getElementById('overallPct').textContent = overall + '%';
     document.getElementById('doneCount').textContent = done;
-
     const weakest = MODULES.map(m => ({id:m.id, pct:modPct(m, s)})).sort((a,b) => a.pct - b.pct)[0];
     document.getElementById('nextLabel').textContent = weakest ? weakest.id.toUpperCase() : 'P0';
   }
-
   document.addEventListener('change', function(e){
     const t = e.target;
     if(!(t instanceof HTMLInputElement)) return;
@@ -237,7 +155,6 @@ body.dark header{background:rgba(8,12,20,.82)}
     setState(s);
     render();
   });
-
   const btn = document.getElementById('themeBtn');
   function applyTheme(){
     const t = localStorage.getItem('theme') || 'light';
@@ -249,7 +166,6 @@ body.dark header{background:rgba(8,12,20,.82)}
     localStorage.setItem('theme', next);
     applyTheme();
   };
-
   applyTheme();
   render();
 })();
