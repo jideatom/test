@@ -44,6 +44,20 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdro
 .bnav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:30;overflow-x:auto}.bnav-inner{display:flex;min-width:max-content;padding:6px 8px;margin:0 auto;justify-content:center}.ni{min-width:68px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 6px;gap:4px}.ni>span:first-child{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:rgba(79,70,229,.12)}.ni-lbl{font-size:.5rem;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:.6px}.ni.active .ni-lbl{color:var(--accent)}
 @media (max-width:760px){.grid,.mini-grid{grid-template-columns:1fr}.hero h2{font-size:1.22rem}}
 </style>
+
+<style>
+.module-track{margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.module-prog{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.module-prog .pct{font-size:.72rem;font-family:var(--mono);font-weight:800;color:var(--accent)}
+.progbar{height:8px;background:var(--bg3);border-radius:999px;overflow:hidden;margin-bottom:10px}
+.progfill{height:100%;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:999px;transition:width .3s ease}
+.ck-list{display:grid;gap:8px}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:var(--bg3);cursor:pointer}
+.ck input{margin-top:2px}
+.ck span{font-size:.78rem;color:var(--text2);font-weight:700;line-height:1.45}
+.ck.done span{text-decoration:line-through;color:var(--text3)}
+</style>
+
 </head>
 <body>
 <header>
@@ -227,5 +241,129 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdro
   applyTheme();
 })();
 </script>
+
+<script>
+(function(){
+  const MODULES = {
+    m0:{
+      title:'M0 Claude workflow base',
+      items:[
+        {id:'m0_1', label:'Finish primary Claude engineering course setup'},
+        {id:'m0_2', label:'Complete first Claude workflow build'},
+        {id:'m0_3', label:'Document one Claude prompt workflow you will reuse'}
+      ]
+    },
+    m1:{
+      title:'M1 Prompting + LLM intuition',
+      items:[
+        {id:'m1_1', label:'Finish prompt engineering core lessons'},
+        {id:'m1_2', label:'Take notes on system prompts, examples, and context control'},
+        {id:'m1_3', label:'Read Hands-On LLMs sections for embeddings/retrieval intuition'}
+      ]
+    },
+    m2:{
+      title:'M2 AI engineering core',
+      items:[
+        {id:'m2_1', label:'Finish Maven bootcamp foundation module'},
+        {id:'m2_2', label:'Set up your working AI engineering environment'},
+        {id:'m2_3', label:'Build first mini project from the bootcamp'},
+        {id:'m2_4', label:'Read Chip Huyen companion chapters for this stage'}
+      ]
+    },
+    m3:{
+      title:'M3 RAG + production thinking',
+      items:[
+        {id:'m3_1', label:'Build first RAG prototype'},
+        {id:'m3_2', label:'Add chunking + retrieval evaluation notes'},
+        {id:'m3_3', label:'Read Designing ML Systems chapters for architecture judgment'}
+      ]
+    },
+    m4:{
+      title:'M4 Agents + MCP',
+      items:[
+        {id:'m4_1', label:'Finish one agent build course milestone'},
+        {id:'m4_2', label:'Complete MCP intro and document one real use case'},
+        {id:'m4_3', label:'Ship one tool-using workflow or assistant'}
+      ]
+    }
+  };
+
+  const KEY = 'ai_module_tracking_v1';
+
+  function getState(){
+    try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; }
+    catch(e){ return {}; }
+  }
+  function setState(s){
+    localStorage.setItem(KEY, JSON.stringify(s));
+  }
+  function modulePct(modKey){
+    const s = getState();
+    const mod = MODULES[modKey];
+    const done = mod.items.filter(x => s[x.id]).length;
+    return mod.items.length ? Math.round(done / mod.items.length * 100) : 0;
+  }
+  function renderModuleCard(card, modKey){
+    const mod = MODULES[modKey];
+    if(!card || !mod) return;
+    const s = getState();
+    const pct = modulePct(modKey);
+    const track = document.createElement('div');
+    track.className = 'module-track';
+    track.innerHTML = `
+      <div class="module-prog">
+        <div class="kicker" style="margin:0">Trackable checkpoints</div>
+        <div class="pct">${pct}% complete</div>
+      </div>
+      <div class="progbar"><div class="progfill" style="width:${pct}%"></div></div>
+      <div class="ck-list">
+        ${mod.items.map(item => `
+          <label class="ck ${s[item.id] ? 'done' : ''}">
+            <input type="checkbox" data-mod="${modKey}" data-id="${item.id}" ${s[item.id] ? 'checked' : ''}>
+            <span>${item.label}</span>
+          </label>
+        `).join('')}
+      </div>
+    `;
+    card.appendChild(track);
+  }
+
+  function renderAll(){
+    const cards = Array.from(document.querySelectorAll('.path-step'));
+    const map = ['m0','m1','m2','m3','m4'];
+    cards.forEach((card, idx) => {
+      const existing = card.querySelector('.module-track');
+      if(existing) existing.remove();
+      renderModuleCard(card, map[idx]);
+    });
+    syncHomeProgress();
+  }
+
+  function syncHomeProgress(){
+    const snapshot = {
+      m0: modulePct('m0'),
+      m1: modulePct('m1'),
+      m2: modulePct('m2'),
+      m3: modulePct('m3'),
+      m4: modulePct('m4')
+    };
+    localStorage.setItem('ai_module_snapshot', JSON.stringify(snapshot));
+  }
+
+  document.addEventListener('change', function(e){
+    const t = e.target;
+    if(!(t instanceof HTMLInputElement)) return;
+    if(!t.matches('input[type="checkbox"][data-id]')) return;
+    const s = getState();
+    s[t.dataset.id] = t.checked;
+    setState(s);
+    renderAll();
+    if(window.refreshHomeWidgets) window.refreshHomeWidgets();
+  });
+
+  document.addEventListener('DOMContentLoaded', renderAll);
+})();
+</script>
+
 </body>
 </html>
