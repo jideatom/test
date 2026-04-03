@@ -1,120 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0f172a">
-<title>Cloud Path · Jideatom LP</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Execution Path</title>
 <style>
-:root{--bg:#f0f2f7;--bg2:#fff;--bg3:#e8ecf4;--text:#0f172a;--text2:#475569;--text3:#94a3b8;--border:rgba(15,23,42,.08);--border2:rgba(15,23,42,.14);--shadow:0 10px 30px rgba(15,23,42,.08);--accent:#0ea5e9;--mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif}
-body.dark{--bg:#080c14;--bg2:#0f1623;--bg3:#141d2e;--text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;--border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.10);--shadow:0 10px 30px rgba(0,0,0,.28)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans)}
-button{font-family:var(--sans)}a{text-decoration:none;color:inherit}
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:10px;margin-bottom:10px}
-body.dark header{background:rgba(8,12,20,.82)}
-.back{background:none;border:none;color:var(--accent);font-size:1.25rem;font-weight:800}
-.htxt{flex:1}.htxt h1{margin:0;font-size:.98rem;font-weight:800}.htxt p{margin:2px 0 0;font-size:.64rem;color:var(--text2);font-family:var(--mono);font-weight:700}
-.theme-btn{min-width:40px;min-height:40px;border-radius:12px;border:1px solid var(--border2);background:var(--bg2);color:var(--text)}
-.wrap{max-width:920px;margin:0 auto;padding:12px 16px 92px}
-.hero{background:linear-gradient(135deg,#082f49,#0369a1 50%,#38bdf8);border-radius:24px;padding:22px;color:#fff;box-shadow:0 16px 40px rgba(14,165,233,.24);margin-bottom:16px;border:1px solid rgba(255,255,255,.08)}
-.hero-k{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.14);font-size:.62rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;font-family:var(--mono)}
-.hero h2{margin:12px 0 6px;font-size:1.36rem;font-weight:800}
-.hero p{margin:0;color:rgba(255,255,255,.9);line-height:1.55;max-width:65ch;font-weight:700}
-.hero-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.hero-chip{padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.14);font-size:.74rem;font-weight:800}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:var(--shadow)}
-.kicker{font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:var(--accent);font-family:var(--mono);margin-bottom:8px}
-.card h3{margin:0 0 6px;font-size:1rem;font-weight:800}
-.card p{margin:0;color:var(--text2);line-height:1.55;font-size:.78rem;font-weight:700}
-.bullets{display:grid;gap:8px;margin-top:12px}
-.bullet{display:flex;gap:8px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:var(--bg3);font-size:.76rem;font-weight:700;color:var(--text2)}
-.dot{width:18px;height:18px;border-radius:999px;display:grid;place-items:center;background:#d9f2ff;color:#0369a1;font-size:.7rem;flex-shrink:0;margin-top:1px}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px}
-.section-title h2{margin:0;font-size:1rem;font-weight:800}
-.section-title span{font-size:.68rem;color:var(--text2);font-family:var(--mono)}
-.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:30;overflow-x:auto}
-.bnav-inner{display:flex;min-width:max-content;padding:6px 8px;margin:0 auto;justify-content:center}
-.ni{min-width:68px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 6px;gap:4px}
-.ni>span:first-child{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:rgba(14,165,233,.16)}
-.ni-lbl{font-size:.5rem;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:.6px}
-.ni.active .ni-lbl{color:var(--accent)}
-@media (max-width:760px){.grid{grid-template-columns:1fr}.hero h2{font-size:1.18rem}}
+body{font-family:Arial;background:#0f172a;color:#e2e8f0;margin:0}
+.wrap{max-width:900px;margin:auto;padding:20px}
+.card{background:#1e293b;padding:16px;border-radius:16px;margin-bottom:16px}
+h2{margin:0 0 10px}
+.ck{display:flex;gap:10px;margin:8px 0}
+.progress{height:8px;background:#334155;border-radius:10px;margin:8px 0}
+.fill{height:100%;background:#38bdf8;border-radius:10px}
 </style>
 </head>
 <body>
-<header>
-  <button class="back" onclick="history.back()">←</button>
-  <div class="htxt"><h1>☁️ Cloud</h1><p>Distinct lane · visible and clear</p></div>
-  <button class="theme-btn" id="themeBtn">🌙</button>
-</header>
-
 <div class="wrap">
-  <section class="hero">
-    <div class="hero-k">Cloud lane</div>
-    <h2>Cloud architecture, deployment, and infrastructure thinking.</h2>
-    <p>This page now stands out properly. Use it as your visible cloud lane for AWS, Azure, networking alignment, and deployment thinking — not as a faded placeholder.</p>
-    <div class="hero-row">
-      <div class="hero-chip">AWS path</div>
-      <div class="hero-chip">Azure path</div>
-      <div class="hero-chip">Networking alignment</div>
-    </div>
-  </section>
+<h1>Cloud Execution Path</h1>
 
-  <div class="section-title"><h2>Cloud Focus</h2><span>clear direction</span></div>
-  <div class="grid">
-    <article class="card">
-      <div class="kicker">Why it matters</div>
-      <h3>Infrastructure gives your AI work somewhere real to live</h3>
-      <p>Use this lane to understand deployment, networking, security boundaries, and how systems move from laptop demos to production environments.</p>
-      <div class="bullets">
-        <div class="bullet"><div class="dot">✓</div><div>Understand AWS and Azure service patterns</div></div>
-        <div class="bullet"><div class="dot">✓</div><div>Connect networking knowledge to cloud architecture</div></div>
-        <div class="bullet"><div class="dot">✓</div><div>Prepare for hosting AI and automation workloads</div></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="kicker">How to use this page</div>
-      <h3>Keep Cloud tied to actual build outcomes</h3>
-      <p>Do not study cloud in isolation. Use it to support deployments, APIs, storage, and networking decisions for your side projects and future production work.</p>
-      <div class="bullets">
-        <div class="bullet"><div class="dot">→</div><div>Map your builds to hosting patterns</div></div>
-        <div class="bullet"><div class="dot">→</div><div>Learn security and access fundamentals</div></div>
-        <div class="bullet"><div class="dot">→</div><div>Use networking instincts as your advantage</div></div>
-      </div>
-    </article>
-  </div>
+<div id="modules"></div>
+
 </div>
 
-<nav class="bnav"><div class="bnav-inner">
-  <a href="index.html" class="ni"><span>🏠</span><span class="ni-lbl">Home</span></a>
-  <a href="linux.html" class="ni"><span>🐧</span><span class="ni-lbl">Linux</span></a>
-  <a href="python.html" class="ni"><span>🐍</span><span class="ni-lbl">Python</span></a>
-  <a href="ai.html" class="ni"><span>🧠</span><span class="ni-lbl">AI</span></a>
-  <a href="claude.html" class="ni"><span>🟠</span><span class="ni-lbl">Claude</span></a>
-  <a href="cloud.html" class="ni active"><span>☁️</span><span class="ni-lbl">Cloud</span></a>
-  <a href="courses.html" class="ni"><span>📚</span><span class="ni-lbl">Courses</span></a>
-  <a href="playbook.html" class="ni"><span>📘</span><span class="ni-lbl">Playbook</span></a>
-</div></nav>
-
 <script>
-(function(){
-  const btn=document.getElementById('themeBtn');
-  function applyTheme(){
-    const t=localStorage.getItem('theme')||'light';
-    document.body.classList.toggle('dark',t==='dark');
-    btn.textContent=t==='dark'?'☀️':'🌙';
-  }
-  btn.onclick=function(){
-    const next=document.body.classList.contains('dark')?'light':'dark';
-    localStorage.setItem('theme',next);
-    applyTheme();
-  };
-  applyTheme();
-})();
+const modules = [
+ {id:"c0",title:"C0 — Fundamentals",items:["IAM basics","Regions & services","CLI usage"]},
+ {id:"c1",title:"C1 — Compute & Storage",items:["EC2/VM setup","S3/Blob storage","VPC basics"]},
+ {id:"c2",title:"C2 — Deployment",items:["Deploy simple app","Domain setup","Basic security"]},
+ {id:"c3",title:"C3 — Real Integration",items:["Deploy AI tool","Connect API","Monitoring/logging"]}
+];
+
+const KEY="cloud_track";
+
+function get(){return JSON.parse(localStorage.getItem(KEY)||"{}")}
+function set(s){localStorage.setItem(KEY,JSON.stringify(s))}
+
+function render(){
+ const state=get();
+ const root=document.getElementById("modules");
+ root.innerHTML="";
+
+ modules.forEach(m=>{
+  let done=0;
+
+  const items=m.items.map((it,i)=>{
+    const id=m.id+"_"+i;
+    if(state[id]) done++;
+    return `<label class="ck">
+      <input type="checkbox" data-id="${id}" ${state[id]?"checked":""}>
+      ${it}
+    </label>`;
+  }).join("");
+
+  const pct=Math.round((done/m.items.length)*100);
+
+  root.innerHTML+=`
+  <div class="card">
+    <h2>${m.title} (${pct}%)</h2>
+    <div class="progress"><div class="fill" style="width:${pct}%"></div></div>
+    ${items}
+  </div>`;
+ });
+
+}
+
+document.addEventListener("change",e=>{
+ if(e.target.dataset.id){
+   const s=get();
+   s[e.target.dataset.id]=e.target.checked;
+   set(s);
+   render();
+ }
+});
+
+render();
 </script>
+
 </body>
 </html>
