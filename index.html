@@ -44,7 +44,7 @@ body.dark header{background:rgba(8,12,20,.82)}
 <div class="wrap">
 <a href="playbook.html" class="goal-banner" id="goalBanner"><div class="gb-ico">🎯</div><div class="gb-body"><div class="gb-month" id="gbMonth">This Month</div><div class="gb-title" id="gbTitle">No goals set yet</div><div class="gb-sub" id="gbSub">Tap to set your monthly milestones →</div><div class="gb-bar-wrap"><div class="gb-bar-fill" id="gbFill"></div></div></div><div class="gb-pct" id="gbPct">-</div></a>
 <div class="streak-bar"><div class="sk-card"><div class="sk-num" id="skCurrent">0</div><div class="sk-lbl">Day Streak</div></div><div class="sk-card"><div class="sk-num" id="skBest">0</div><div class="sk-lbl">Best</div></div><div class="sk-card"><div class="sk-num" id="skHours">0m</div><div class="sk-lbl">Study Time</div></div></div>
-<div class="focus-wrap" id="todaySessionCard"><div class="focus-tag" id="focusPhase">Today's Session</div><div class="focus-title" id="focusTitle">Loading today's task…</div><div class="focus-sub" id="focusSub">Tap Start to begin</div><div class="focus-row"><button class="focus-btn" id="focusStartBtn" type="button">▶ Start Session</button><span class="focus-studied" id="focusStudied">✓ Studied today</span></div></div>
+<div class="focus-wrap" id="todaySessionCard"><div class="focus-tag" id="focusPhase">Today's Session</div><div class="focus-title" id="focusTitle">Loading today's task…</div><div class="focus-sub" id="focusSub">Tap Start to begin</div><div class="focus-row"><button class="focus-btn" id="focusStartBtn" type="button">▶ Start Session</button><button class="focus-btn" id="resetStudyBtn" type="button" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18)">↺ Reset Study Data</button><span class="focus-studied" id="focusStudied">✓ Studied today</span></div></div>
 <div class="section-title"><h2>Live Progress</h2><span id="overallPct">0% overall</span></div>
 <div class="prog-overview">
 <div class="pov-row"><div class="pov-dot" style="background:#f97316"></div><span class="pov-name">Claude Sprint</span><div class="pov-bar-bg"><div class="pov-bar-fill" id="pb-claude" style="background:#f97316;width:0%"></div></div><span class="pov-pct" id="pp-claude" style="color:#f97316">0%</span></div>
@@ -62,7 +62,7 @@ body.dark header{background:rgba(8,12,20,.82)}
 <a class="ql" href="cloud.html"><div class="ql-title">☁️ Cloud</div><div class="ql-sub">AWS and Azure certification path</div></a>
 <a class="ql" href="playbook.html"><div class="ql-title">📘 Playbook</div><div class="ql-sub">Goals at the top, plan at the bottom</div></a>
 </div>
-<div class="section-title"><h2>Study Activity</h2><span>tap today to log a block</span></div>
+<div class="section-title"><h2>Study Activity</h2><span>tap today to mark activity</span></div>
 <div class="heatmap-wrap"><div class="hm-hdr"><span class="hm-title">Consistency heatmap</span><div class="hm-legend"><span>Less</span><div class="hm-demo" style="background:var(--bg3)"></div><div class="hm-demo" style="background:rgba(79,70,229,.22)"></div><div class="hm-demo" style="background:rgba(79,70,229,.55)"></div><div class="hm-demo" style="background:#4f46e5"></div><span>More</span></div></div><div class="hm-grid" id="hmGrid"></div></div>
 <div class="section-title"><h2>Achievements</h2><span>now tied to real study state</span></div><section id="achievementsCard"></section>
 <div class="section-title"><h2>Recommended Next Actions</h2><span>based on your actual state</span></div><div class="card" id="nextActionsCard"></div>
