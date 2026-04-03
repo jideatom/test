@@ -1,80 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cloud Execution Path</title>
+<title>Cloud Path v3</title>
 <style>
-body{font-family:Arial;background:#0f172a;color:#e2e8f0;margin:0}
+:root{
+--bg:#0b1220;--card:#111827;--text:#e5e7eb;--muted:#94a3b8;--accent:#38bdf8;
+}
+body{margin:0;font-family:system-ui;background:var(--bg);color:var(--text)}
 .wrap{max-width:900px;margin:auto;padding:20px}
-.card{background:#1e293b;padding:16px;border-radius:16px;margin-bottom:16px}
-h2{margin:0 0 10px}
-.ck{display:flex;gap:10px;margin:8px 0}
-.progress{height:8px;background:#334155;border-radius:10px;margin:8px 0}
-.fill{height:100%;background:#38bdf8;border-radius:10px}
+.hero{
+background:linear-gradient(135deg,#0ea5e9,#2563eb);
+padding:20px;border-radius:20px;margin-bottom:16px
+}
+.hero h1{margin:0;font-size:1.4rem}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.stat{background:var(--card);padding:12px;border-radius:12px;text-align:center}
+.module{background:var(--card);padding:16px;border-radius:16px;margin-bottom:12px}
+.title{font-weight:700;margin-bottom:6px}
+.bar{height:6px;background:#1f2937;border-radius:6px;margin:8px 0}
+.fill{height:100%;background:var(--accent)}
+.ck{display:flex;gap:8px;margin:6px 0;font-size:.9rem}
 </style>
 </head>
 <body>
 <div class="wrap">
+<div class="hero">
 <h1>Cloud Execution Path</h1>
+<p>Make your systems real, deployed, and production-ready</p>
+</div>
+
+<div class="grid">
+<div class="stat"><div id="overall">0%</div><small>Overall</small></div>
+<div class="stat"><div id="count">0</div><small>Done</small></div>
+<div class="stat"><div id="next">C0</div><small>Next</small></div>
+</div>
 
 <div id="modules"></div>
 
 </div>
 
 <script>
-const modules = [
- {id:"c0",title:"C0 — Fundamentals",items:["IAM basics","Regions & services","CLI usage"]},
- {id:"c1",title:"C1 — Compute & Storage",items:["EC2/VM setup","S3/Blob storage","VPC basics"]},
- {id:"c2",title:"C2 — Deployment",items:["Deploy simple app","Domain setup","Basic security"]},
- {id:"c3",title:"C3 — Real Integration",items:["Deploy AI tool","Connect API","Monitoring/logging"]}
+const modules=[
+{id:"c0",title:"C0 — Foundation",items:["IAM","CLI","Regions"]},
+{id:"c1",title:"C1 — Core Infra",items:["EC2","Storage","Networking"]},
+{id:"c2",title:"C2 — Deployment",items:["Deploy app","Domain","Security"]},
+{id:"c3",title:"C3 — Production",items:["Deploy AI","Logging","Monitoring"]}
 ];
-
-const KEY="cloud_track";
+const KEY="cloud_v3";
 
 function get(){return JSON.parse(localStorage.getItem(KEY)||"{}")}
 function set(s){localStorage.setItem(KEY,JSON.stringify(s))}
 
 function render(){
- const state=get();
- const root=document.getElementById("modules");
- root.innerHTML="";
+let state=get();
+let total=0,done=0;
+let html="";
 
- modules.forEach(m=>{
-  let done=0;
+modules.forEach(m=>{
+let mDone=0;
 
-  const items=m.items.map((it,i)=>{
-    const id=m.id+"_"+i;
-    if(state[id]) done++;
-    return `<label class="ck">
-      <input type="checkbox" data-id="${id}" ${state[id]?"checked":""}>
-      ${it}
-    </label>`;
-  }).join("");
+let items=m.items.map((it,i)=>{
+let id=m.id+i;
+total++;
+if(state[id]){done++;mDone++}
+return `<label class="ck"><input type="checkbox" data-id="${id}" ${state[id]?"checked":""}>${it}</label>`
+}).join("");
 
-  const pct=Math.round((done/m.items.length)*100);
+let pct=Math.round((mDone/m.items.length)*100);
 
-  root.innerHTML+=`
-  <div class="card">
-    <h2>${m.title} (${pct}%)</h2>
-    <div class="progress"><div class="fill" style="width:${pct}%"></div></div>
-    ${items}
-  </div>`;
- });
+html+=`<div class="module">
+<div class="title">${m.title} (${pct}%)</div>
+<div class="bar"><div class="fill" style="width:${pct}%"></div></div>
+${items}
+</div>`;
+});
 
+document.getElementById("modules").innerHTML=html;
+
+let overall=Math.round((done/total)*100);
+document.getElementById("overall").textContent=overall+"%";
+document.getElementById("count").textContent=done;
+
+let next=modules.find(m=>{
+return m.items.some((_,i)=>!state[m.id+i])
+});
+document.getElementById("next").textContent=next?next.id.toUpperCase():"Done";
 }
 
 document.addEventListener("change",e=>{
- if(e.target.dataset.id){
-   const s=get();
-   s[e.target.dataset.id]=e.target.checked;
-   set(s);
-   render();
- }
+if(e.target.dataset.id){
+let s=get();
+s[e.target.dataset.id]=e.target.checked;
+set(s);
+render();
+}
 });
 
 render();
 </script>
-
 </body>
 </html>
